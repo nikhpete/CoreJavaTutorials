@@ -11,7 +11,7 @@ public class Main {
 			System.out.println(Thread.currentThread().getName());
 			System.out.println("Done");
 		});
-		// for baove main thread executes
+		// for above main thread executes
 
 		future.thenRunAsync(()-> {
 			System.out.println(Thread.currentThread().getName());

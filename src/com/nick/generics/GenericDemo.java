@@ -3,12 +3,21 @@ package com.nick.generics;
 public class GenericDemo {
 
 	public static void main(String[] args) {
-		GenericList<User> list = new GenericList();
+		GenericList<User> list = new GenericList<User>();
+		list.add(new User(1));
+		
+		GenericList<Instructor> insList = new GenericList<Instructor>();
+		insList.add(new Instructor(2));
+		
+		Util.printUsers(list);
+		Util.printUsers(insList);
+		
+		Util.maxValue(1, 10);
 	}
 
 }
 
-class GenericList<T extends Comparable<T> & Cloneable>{
+class GenericList<T>{
 	private T[] items = (T[]) new Object[10];
 	private int count;
 	
@@ -22,11 +31,24 @@ class GenericList<T extends Comparable<T> & Cloneable>{
 	
 }
 
-class User implements Comparable<User>, Cloneable{
+class User{
 	int points;
+	
+	public User(int points) {
+		this.points = points;
+	}
+	
 	@Override
-	public int compareTo(User o) {
-		return this.points = o.points;
+	public String toString() {
+		return "{"+this.points+"}";
+	}
+	
+}
+
+class Instructor extends User{
+
+	public Instructor(int points) {
+		super(points);
 	}
 	
 }
@@ -34,5 +56,13 @@ class User implements Comparable<User>, Cloneable{
 class Util{
 	public static <T extends Comparable<T>> T max(T first, T second) {
 		return (first.compareTo(second)<0)? first : second;
+	}
+	
+	public static <K,V> void maxValue(K key, V value){
+		System.out.println("Data="+key+":"+value);
+	}
+	
+	public static void printUsers(GenericList<?> users) {
+		System.out.println("User points:"+users.getItem(0));
 	}
 }
