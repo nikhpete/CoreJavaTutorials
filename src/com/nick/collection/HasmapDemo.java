@@ -13,7 +13,7 @@ public class HasmapDemo {
 			emp.empName = "name"+i;
 			emplist.add(emp);
 		}
-
+		
 		emplist.stream().forEach(System.out::println);
 
 		Map<Emp, String> empMap = new HashMap<>();

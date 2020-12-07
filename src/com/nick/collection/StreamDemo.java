@@ -34,6 +34,7 @@ public class StreamDemo {
 	public static void highestSum(List<Integer> list) {
 		Collections.sort(list);
 		int sum = list.stream().mapToInt(Integer::intValue).sum();
+		list.stream().forEach(System.out::println);
 		System.out.print("\tMax Sum:"+ (sum - list.get(0)));
 		System.out.print("\tMin Sum:"+ (sum - list.get(list.size()-1)));
 	}
